@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -26,12 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script src="/data/lots.js"></script>
+      </head>
       <body>
         <div className="grid-bg"></div>
         <div className="relative z-10">
           {children}
         </div>
-        <Script src="/data/lots.js" strategy="afterInteractive" />
       </body>
     </html>
   )
