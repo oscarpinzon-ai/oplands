@@ -1,0 +1,7 @@
+// Cloudflare Pages configuration
+// This tells Cloudflare to treat this as a static Pages project, not Workers
+{
+  "$schema": "https://json.schemastore.org/wrangler.json",
+  "name": "oplands",
+  "type": "javascript"
+}
