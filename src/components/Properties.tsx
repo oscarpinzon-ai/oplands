@@ -1,20 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Lot } from '@/lib/types';
+import { LOTS } from '@/lib/lots';
 import LotCard from './LotCard';
 
 export default function Properties() {
-  const [lots, setLots] = useState<Lot[]>([]);
+  const [lots] = useState(LOTS);
   const [filter, setFilter] = useState('all');
-  const [filtered, setFiltered] = useState<Lot[]>([]);
-
-  useEffect(() => {
-    // Load lots from window.OPLANDS_LOTS (injected via script)
-    const lotsData = (window as any).OPLANDS_LOTS || [];
-    setLots(lotsData);
-    setFiltered(lotsData);
-  }, []);
+  const [filtered, setFiltered] = useState(LOTS);
 
   useEffect(() => {
     const newFiltered =

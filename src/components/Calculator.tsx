@@ -1,21 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Lot } from '@/lib/types';
+import { useState } from 'react';
+import { LOTS } from '@/lib/lots';
 import { formatUSD, calculateMonthlyPayment } from '@/lib/utils';
 
 export default function Calculator() {
-  const [lots, setLots] = useState<Lot[]>([]);
-  const [selectedLot, setSelectedLot] = useState<Lot | null>(null);
+  const [selectedLot, setSelectedLot] = useState(LOTS[0]);
   const [downPercent, setDownPercent] = useState(5);
   const [term, setTerm] = useState(24);
   const APR = 0.09; // 9%
-
-  useEffect(() => {
-    const lotsData = (window as any).OPLANDS_LOTS || [];
-    setLots(lotsData);
-    if (lotsData.length > 0) setSelectedLot(lotsData[0]);
-  }, []);
 
   const price = selectedLot?.amv || 0;
   const downPayment = Math.round((price * downPercent) / 100);
@@ -46,12 +39,12 @@ export default function Calculator() {
                   value={selectedLot?.id || ''}
                   onChange={(e) => {
                     const lotId = parseInt(e.target.value);
-                    const lot = lots.find((l) => l.id === lotId);
+                    const lot = LOTS.find((l) => l.id === lotId);
                     if (lot) setSelectedLot(lot);
                   }}
                   className="w-full bg-surface-2 border border-white/6 rounded px-3 py-2 text-sm text-fg"
                 >
-                  {lots.map((lot) => (
+                  {LOTS.map((lot) => (
                     <option key={lot.id} value={lot.id}>
                       {lot.display_address}
                     </option>
