@@ -1,8 +1,6 @@
 {
   "name": "oplands",
   "type": "javascript",
-  "compatibility_date": "2026-04-21",
-  "assets": {
-    "directory": "out"
-  }
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-21"
 }
